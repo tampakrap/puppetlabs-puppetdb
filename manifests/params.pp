@@ -68,7 +68,7 @@ class puppetdb::params inherits puppetdb::globals {
   $puppetdb_group       = 'puppetdb'
   $masterless           = false
 
-  if !($puppetdb_version in ['latest','present','absent']) and versioncmp($puppetdb_version, '3.0.0') < 0 {
+  if $puppetdb_version == 'latest' or !($puppetdb_version in ['latest','present','absent']) and versioncmp($puppetdb_version, '3.0.0') < 0 {
     case $::osfamily {
       'RedHat', 'Suse', 'Archlinux','Debian': {
         $etcdir                 = '/etc/puppetdb'
